@@ -67,8 +67,6 @@ fs.writeFileSync(path.join(ROOT, 'shared','data','nobles.js'),
   "'use strict';\n/* 基础版 10 张贵族圆板 */\nmodule.exports = {\n  source: 'official-art',\n  nobles: " + JSON.stringify(nobles, null, 2) + "\n};\n");
 fs.writeFileSync(path.join(ROOT, 'public','assets','cards','manifest.json'),
   JSON.stringify(cards.reduce((m,c)=>{m[c.cardKey]=c.image;return m;},{})));
-fs.writeFileSync(path.join(ROOT, 'public','assets','nobles','manifest.json'),
-  JSON.stringify(nobles.reduce((m,n)=>{m[n.id]=n.image;return m;},{})));
 
 // 统计自检
 const byLevel = [1,2,3].map(l => cards.filter(c=>c.level===l));
