@@ -179,6 +179,7 @@ tools/                      # 按用途分四类，脚本都归到对应子目�
     setup-tunnel.js        # Cloudflare 隧道创建 + DNS 绑定（API Token 版）
     deploy-tunnel.ps1      # 同上（交互式 tunnel login 版）
     tunnel-check.js        # 隧道与公网自检
+    sftp-sync.js           # 服务器连不上 GitHub 时的整仓 SFTP 同步（推荐用这个更新服务器）
   cloudflared.exe          # 隧道二进制（55MB，不入库）
 ```
 
@@ -212,7 +213,7 @@ node tools/test/cache-test.js               # 缓存头 / ETag / 版本号
 **不需要买服务器、不需要公网 IP、不需要开放路由器端口**。
 本作的 WebSocket 是自己实现的（`server/websocket.js`），Cloudflare 边缘原生支持 WebSocket 升级，**无需任何改动**。
 
-### 6.0 重启后公网访问不了？——多半是隧道没起来
+### 6.0 本机自启与隧道
 
 服务端（`node server.js`）和 Cloudflare 隧道（`cloudflared.exe`）是**两个独立进程**。
 重启电脑、或只重启了服务端之后，隧道不会自动恢复，Cloudflare 会返回 **530 / 502**。

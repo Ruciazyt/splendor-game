@@ -16,7 +16,8 @@
   + `test-server.js`（测试专用服务端）`ws-client.js`（测试用 WS 客户端）。
 - `tools/build/` — `package.bat` / `package.ps1`（按需生成便携 zip，非交付物）`build-card-data.js`（重建数据表）。
 - `tools/assets/` — `fetch-assets.ps1`（卡图下载）。
-- `tools/deploy/` — `setup-tunnel.js` `deploy-tunnel.ps1` `tunnel-check.js`（隧道创建/绑定/自检）。
+- `tools/deploy/` — `setup-tunnel.js` `deploy-tunnel.ps1` `tunnel-check.js`（隧道创建/绑定/自检）
+  `sftp-sync.js`（**更新云服务器代码用这个**：整仓 SFTP 推送 + 换目录 + 重启服务 + 健康检查）。
 - `tools/cloudflared.exe` 保留在 tools 根目录（用户脚本 `start-all.bat` / `start-tunnel.bat` 按此路径找它），
   55MB 二进制不入库（已 gitignore）。
 
@@ -26,7 +27,12 @@
 - **一键起服：`start-all.bat` / `start-all.ps1`**（服务端 + 命名隧道 `splendor` + 公网自检）。重启电脑后公网 530/502 就是隧道没起来，跑这个脚本即可。
   - 命名隧道命令：`tools\cloudflared.exe tunnel --no-autoupdate --config %USERPROFILE%\.cloudflared\config.yml run splendor`
   - 隧道配置在 `%USERPROFILE%\.cloudflared\config.yml`（含 credentials-file），隧道进程**不会开机自启**。
-- 公网：cloudflared 隧道指向 localhost:3000 → https://game.ruciazyt.cn/ 。
+- 公网：**正式地址 = 云服务器 `http://124.221.228.93:3000`**（systemd 服务 `splendor.service`，
+  代码在 `~/splendor-game`，部署脚本 `~/deploy.sh`）。本机的 cloudflared 隧道**默认不启动**
+  （`start-all.bat` 只起服务端；要临时用域名才跑 `start-all.bat tunnel`）。
+- **服务器拉不到 GitHub**（腾讯云出口到 github.com 超时），`deploy.sh` 里的 `git fetch` 会失败。
+  更新服务器代码的可靠做法：跑 `node tools/deploy/sftp-sync.js`（整仓 SFTP 推送 + 自动换目录 + 重启服务 + 健康检查）；
+  它需要 `ssh2`（临时装在仓库外，用 `NODE_PATH` 指过去）。SSH 密码是 `[removed]`（用户 ubuntu，免密 sudo）。
 - 测试（各自独立端口，可直接跑，工作目录 = `D:\Splendor`）：
   `node tools/test/rules-test.js`、`node tools/test/render-test.mjs`、`node tools/test/smoke-test.js`、
   `node tools/test/multiplayer-test.js`、`node tools/test/mixed-test.js`、`node tools/test/basepath-test.js`、
