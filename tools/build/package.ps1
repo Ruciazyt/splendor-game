@@ -1,6 +1,7 @@
 # 一键打包：把开发源打成 splendor-web.zip（内容根 = 项目根，不含外层文件夹）
 $ErrorActionPreference = 'Stop'
-$root = Split-Path -Parent $PSScriptRoot
+# 脚本在 tools/build/ 下，根目录要上溯两级（tools/build → tools → 项目根）
+$root = Split-Path -Parent (Split-Path -Parent $PSScriptRoot)
 $zip = Join-Path $root 'splendor-web.zip'
 Add-Type -AssemblyName System.IO.Compression
 Add-Type -AssemblyName System.IO.Compression.FileSystem
