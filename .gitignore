@@ -1,4 +1,4 @@
-# 打包产物与运行时文件（由构建脚本生成，不入库）
+# 按需生成的便携包与运行时文件（不进仓库；zip 用完即删）
 splendor-web/
 splendor-web.zip
 *.log

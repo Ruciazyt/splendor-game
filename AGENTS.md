@@ -4,17 +4,17 @@
 
 > - **固定根目录 = `D:\Splendor`**，所有 session 共用这一份代码；不要在别的盘/会话目录另起副本。
 >   服务端、隧道、测试、打包全部在 `D:\Splendor` 下跑（工作目录必须是仓库根，静态目录按 `__dirname` 解析）。
-> - 根目录 = **唯一源码**（`public/`、`server/`、`shared/`、`tools/`、`docs/`、`rules/`）。
-> - `splendor-web.zip` = 最终交付包（根目录为内容根，不含外层文件夹），由 `tools\build\package.bat` 一键生成。
-> - **不要保留解压副本**（`splendor-web/`）：改完源码跑一次 `tools\build\package.bat` 重建 zip 即可，
->   避免同一份代码出现两处副本、改了一处忘了另一处。
+> - 根目录 = **唯一源码**（`public/`、`server/`、`shared/`、`tools/`、`docs/`、`rules/`），**代码本体就是交付物**。
+> - **不再维护 `splendor-web.zip` 交付包**（2026-11-15 起）：公网 https://game.ruciazyt.cn/ 直接就是成品，
+>   再留一份 zip 就是多一个会过期的代码副本。需要离线给别人的便携包时，按需跑 `tools\build\package.bat` 生成即可，
+>   **用完即删**，别让它长期留在仓库里。
 
 ## tools/ 目录分类（改完记得同步本文档）
 
 - `tools/test/` — 全部测试：`rules-test.js` `render-test.mjs` `smoke-test.js` `multiplayer-test.js`
   `mixed-test.js` `basepath-test.js` `cache-test.js` `room-test.js` `idle-test.js`
   + `test-server.js`（测试专用服务端）`ws-client.js`（测试用 WS 客户端）。
-- `tools/build/` — `package.bat` / `package.ps1`（生成交付 zip）`build-card-data.js`（重建数据表）。
+- `tools/build/` — `package.bat` / `package.ps1`（按需生成便携 zip，非交付物）`build-card-data.js`（重建数据表）。
 - `tools/assets/` — `fetch-assets.ps1`（卡图下载）。
 - `tools/deploy/` — `setup-tunnel.js` `deploy-tunnel.ps1` `tunnel-check.js`（隧道创建/绑定/自检）。
 - `tools/cloudflared.exe` 保留在 tools 根目录（用户脚本 `start-all.bat` / `start-tunnel.bat` 按此路径找它），

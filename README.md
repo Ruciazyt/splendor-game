@@ -168,8 +168,8 @@ tools/                      # 按用途分四类，脚本都归到对应子目�
     cache-test.js          # 缓存头 / ETag / 版本号测试
     test-server.js         # 测试专用服务端（独立端口，跑完自动关闭）
     ws-client.js           # 测试用 WebSocket 客户端（联机/混合测试共用）
-  build/                   # 构建与打包
-    package.bat            # 一键生成 splendor-web.zip
+  build/                   # 构建工具
+    package.bat            # 按需生成便携包 splendor-web.zip（用完即删，非交付物）
     package.ps1            # 同上（PowerShell 实现，被 package.bat 调用）
     build-card-data.js     # 由卡牌数据表重建 shared/data/*.js（附卡图映射）
   assets/                  # 素材
