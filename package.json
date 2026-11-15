@@ -1,0 +1,13 @@
+{
+  "name": "splendor-web",
+  "version": "1.0.0",
+  "private": true,
+  "description": "网页版《璀璨宝石》桌游：好友联机 + 热座模式（零依赖 Node 服务端）",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

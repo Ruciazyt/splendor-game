@@ -1,0 +1,21 @@
+# 打包产物与运行时文件（由构建脚本生成，不入库）
+splendor-web/
+splendor-web.zip
+*.log
+tmp_server.log
+tmp_server.err
+
+# Cloudflare 隧道程序（52MB 二进制，从 GitHub Releases 另行下载）
+tools/cloudflared.exe
+
+# 本机凭据 / 环境
+tools/.cf-token
+.env
+
+# 编辑器与系统
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+# 官方规则书原图（第三方版权素材，仅本地留存）
+rules/
