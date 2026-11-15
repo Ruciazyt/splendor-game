@@ -222,7 +222,7 @@ select{appearance:none;-webkit-appearance:none;padding-right:40px;
   height:calc(100vh - 76px);max-height:100%;overflow-y:auto;overscroll-behavior:contain;
 }
 .col--left > .panel{flex:0 0 auto}
-.col--left > .ledger{flex:1 1 0;min-height:150px}
+.col--right > .ledger{flex:1 1 0;min-height:150px}
 .col--right{
   position:sticky;top:calc(52px + var(--sp-lg));align-self:start;
   height:calc(100vh - 76px);overflow-y:auto;overscroll-behavior:contain;
@@ -371,6 +371,21 @@ select{appearance:none;-webkit-appearance:none;padding-right:40px;
   /* 上限放宽：3 张 / 4 张贵族图都能撑满整行，不再出现大空隙 */
   flex:1 1 0;min-width:0;max-width:380px;
 }
+/* 左栏：贵族圆板改成竖排，一行一张（头像 + 名字） */
+.col--left .nobles{flex-direction:column;gap:0;justify-content:flex-start}
+.col--left .nobles .noble{
+  flex:0 0 auto;width:100%;max-width:none;
+  display:flex;align-items:center;gap:var(--sp-sm);
+  text-align:left;padding:6px 0;
+  border-bottom:1px solid var(--hairline-soft);
+}
+.col--left .nobles .noble:last-child{border-bottom:0}
+.col--left .noble__art{width:52px;height:52px;flex:0 0 auto;aspect-ratio:auto}
+.col--left .noble__name{
+  margin-top:0;flex:1 1 auto;min-width:0;
+  display:grid;grid-template-rows:auto auto;justify-items:start;align-items:start;
+}
+.col--left .noble__owner,.col--left .noble__flag{position:static;order:3;flex:0 0 auto}
 .tier__cards .card-slot,.tier__cards .deck{
   flex:1 1 0;min-width:0;max-width:220px;
 }
@@ -393,12 +408,7 @@ select{appearance:none;-webkit-appearance:none;padding-right:40px;
   color:var(--ink);
 }
 .noble__name small{display:block;font-weight:400;font-size:var(--fs-micro);line-height:var(--lh-micro);letter-spacing:var(--ls-micro);color:var(--ink-3);margin-top:2px}
-.noble__req{
-  display:flex;justify-content:center;align-items:center;gap:5px;
-  margin-top:6px;flex-wrap:nowrap;white-space:nowrap;
-  border-top:1px solid var(--hairline-soft);padding-top:5px;
-}
-.req-item{display:inline-flex;align-items:center;gap:1px;font-size:var(--fs-micro);line-height:1;color:var(--ink-2)}
+/* 贵族卡不再显示宝石需求行 */
 .noble__owner{
   position:absolute;top:6px;right:6px;z-index:2;
   padding:1px 8px;border-radius:var(--r-pill);
@@ -530,8 +540,8 @@ select{appearance:none;-webkit-appearance:none;padding-right:40px;
 .stack{display:inline-flex;align-items:center;gap:3px;margin:0 4px 0 0;vertical-align:middle}
 .stack b{font-size:var(--fs-caption);font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums}
 .pl{display:inline-flex;align-items:center;gap:var(--sp-xxs);flex-wrap:wrap}
+.pl--total{color:var(--ink-2);font-weight:600;font-variant-numeric:tabular-nums}
 .gem-img{display:inline-block;vertical-align:middle;filter:drop-shadow(0 2px 5px rgba(40,24,6,.36))}
-.req-item .gem-img{margin-right:1px}
 
 /* ---------------- 战报（左栏底部，与卡片区齐平） ---------------- */
 .ledger{
@@ -769,16 +779,16 @@ select{appearance:none;-webkit-appearance:none;padding-right:40px;
   .topbar::-webkit-scrollbar{display:none}
   .topbar > *{flex:0 0 auto}
   .topbar__title{font-size:var(--fs-body)}
-  /* 单栏时把三栏摊平重排：拿取区 → 牌桌 → 玩家 → 战报 */
+  /* 单栏时把三栏摊平重排：拿取区 → 贵族圆板 → 牌桌 → 玩家 / 保留卡 / 战报 */
   .layout{display:flex;flex-direction:column;margin-top:var(--sp-md);gap:var(--sp-md)}
   .col{display:contents}
   .panel,.ledger{flex:0 1 auto;min-width:0;max-width:100%}
   .col--left > .panel:first-child{order:1}
+  .col--left > .panel:last-child{order:2}
   .col--center > *{order:3}
   .col--right > *{order:4}
-  .col--left > .ledger{order:5}
   .col--left{align-self:auto;height:auto}
-  .col--left .ledger{flex:0 0 auto;min-height:0}
+  .col--right .ledger{flex:0 0 auto;min-height:0}
   .ledger__body{max-height:300px}
   .panel{padding:var(--sp-md);border-radius:var(--r-md)}
   .panel__title{font-size:var(--fs-body)}

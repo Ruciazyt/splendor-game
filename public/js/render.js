@@ -1,4 +1,4 @@
-import { COLORS, ALL_COLORS, COLOR_META, COLOR_IMG, CARD_BACK, gem, tokenImg, tokenList, gemList, reqList, av } from './icons.js';
+import { COLORS, ALL_COLORS, COLOR_META, COLOR_IMG, CARD_BACK, gem, tokenImg, tokenList, gemList, av } from './icons.js';
 
 export const esc = (s) =>
   String(s == null ? '' : s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -162,8 +162,7 @@ export function nobleTileInner(n, v) {
     ${owner ? `<div class="noble__owner">${esc(owner)}</div>` : ''}
     ${ready ? '<div class="noble__flag">可拜访</div>' : ''}
     <div class="noble__art" style="background-image:url('${av('assets/nobles/' + esc(n.image || ''))}')"></div>
-    <div class="noble__name">${esc(n.nameZh || n.name)}<small>${esc(n.name || '')}</small></div>
-    <div class="noble__req" title="拜访所需红利">${reqList(n.require, 13)}</div>`;
+    <div class="noble__name">${esc(n.nameZh || n.name)}<small>${esc(n.name || '')}</small></div>`;
 }
 
 function nobleTile(n, v) {
@@ -180,6 +179,8 @@ export function playerRowClass(p, v) {
 export function playerRowInner(p, v) {
   const isTurn = v.game.turn === p.index;
   const me = p.index === v.meSeat;
+  // 指示物总数（含黄金），紧跟在「持有」后面
+  const tokenTotal = Object.values(p.tokens || {}).reduce((a, b) => a + (b || 0), 0);
   // 侧栏只留关键信息（声望 / 持有 / 红利 / 保留 / 贵族）；
   // 买了哪些卡、留了哪些卡在「详情」弹窗里看。
   return `
@@ -195,6 +196,7 @@ export function playerRowInner(p, v) {
       </div>
       <div class="player__meta">
         <span class="pl">持有 ${tokenList(p.tokens, { size: 20 })}</span>
+        <span class="pl pl--total" title="指示物总数（含黄金）">共 ${tokenTotal}</span>
         <span class="pl">红利 ${gemList(p.bonuses, { size: 17 })}</span>
         <span>保留 ${p.reservedCount}</span>
         <span>贵族 ${p.nobles.length}</span>
@@ -350,16 +352,12 @@ export function renderGame(v) {
         <div class="tray">${tokenCellsHtml(v)}</div>
         <div class="take-bar">${takeBarHtml(v)}</div>
       </section>
-      <section class="ledger">
-        <div class="ledger__head">战报</div>
-        <div class="ledger__body">${logHtml(v)}</div>
-      </section>
-    </div>
-    <div class="col col--center">
       <section class="panel">
         <h3 class="panel__title">贵族圆板 <span class="hint">满足红利即自动拜访 · 每片 3 点</span></h3>
         <div class="nobles">${noblesHtml(v)}</div>
       </section>
+    </div>
+    <div class="col col--center">
       <section class="panel panel--dark">
         <h3 class="panel__title">发展卡市场 <span class="hint">双击卡牌购买 · 「留」保留（会再确认一次，并拿走 1 黄金）</span></h3>
         ${tiersHtml(v)}
@@ -371,6 +369,10 @@ export function renderGame(v) {
         <div class="players">${playersHtml(v)}</div>
       </section>
       <section class="panel">${reservedHtml(v)}</section>
+      <section class="ledger">
+        <div class="ledger__head">战报</div>
+        <div class="ledger__body">${logHtml(v)}</div>
+      </section>
     </div>
   </div>`;
 }
