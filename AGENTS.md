@@ -60,6 +60,10 @@
 - 左栏贵族圆板一行一个：**大图（clamp(76px,6vw,112px)）+ 中文名 + 英文名**，
   图要够大才能看清圆板上印的需求宝石（原图 145×145，放大到 112px 仍清晰）；
   需求宝石行不再单独画在圆板下面（`.noble__req` 已废弃，render-test 有断言守着）。
+- **增量渲染的定位器必须用稳定类名**：`main.js` 的 `patchBoard()` 只更新变化的区块，
+  保留卡面板靠 `.panel--reserved` 定位（`render.js` 里给它加的类），不要用位置选择器。
+  历史坑：曾用 `.col--right .panel:last-child` 定位保留卡，右栏变成三块（玩家 / 保留卡 / 战报）后
+  `:last-child` 匹配不到任何元素 → 保留卡面板永远停在首次渲染的样子（保留卡「不显示」）。
 - **多房间**：服务端 `rooms` 是 Map，每个房间有自己的 records / game / hotseatSeats，互不影响。
   - 房间码统一大写（`normalizeRoomId`），默认房间固定为 `MAIN`；服务端用 `randomRoomId()` 生成 5 位码（去掉易混字符）。
   - 客户端用 `hello` 消息切换房间：带 `room` 进指定房间，带 `create: true` 让服务端新建房间。

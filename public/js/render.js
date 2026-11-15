@@ -368,7 +368,7 @@ export function renderGame(v) {
         <h3 class="panel__title">玩家 <span class="hint">${v.hotseat ? esc(v.currentName || '') : '你 = ' + esc(v.meName || '')}</span></h3>
         <div class="players">${playersHtml(v)}</div>
       </section>
-      <section class="panel">${reservedHtml(v)}</section>
+      <section class="panel panel--reserved">${reservedHtml(v)}</section>
       <section class="ledger">
         <div class="ledger__head">战报</div>
         <div class="ledger__body">${logHtml(v)}</div>

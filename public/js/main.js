@@ -564,7 +564,7 @@ function patchBoard(v) {
   patchNobles(v);
   patchTiers(v);
   patchPlayers(v);
-  setHtml(app.querySelector('.col--right .panel:last-child'), reservedHtml(v));
+  setHtml(app.querySelector('.panel--reserved'), reservedHtml(v));
 }
 
 /* 弹窗 / 交接帘：内容没变就不重建（弹窗里的卡图不会重载） */
