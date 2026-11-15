@@ -2,8 +2,8 @@
 
 ## 目录与产物
 
-> - **固定根目录 = `D:\programe`**，所有 session 共用这一份代码；不要在别的盘/会话目录另起副本。
->   服务端、隧道、测试、打包全部在 `D:\programe` 下跑（工作目录必须是仓库根，静态目录按 `__dirname` 解析）。
+> - **固定根目录 = `D:\Splendor`**，所有 session 共用这一份代码；不要在别的盘/会话目录另起副本。
+>   服务端、隧道、测试、打包全部在 `D:\Splendor` 下跑（工作目录必须是仓库根，静态目录按 `__dirname` 解析）。
 > - 根目录 = **唯一源码**（`public/`、`server/`、`shared/`、`tools/`、`docs/`、`rules/`）。
 > - `splendor-web.zip` = 最终交付包（根目录为内容根，不含外层文件夹），由 `tools\build\package.bat` 一键生成。
 > - **不要保留解压副本**（`splendor-web/`）：改完源码跑一次 `tools\build\package.bat` 重建 zip 即可，
@@ -27,7 +27,7 @@
   - 命名隧道命令：`tools\cloudflared.exe tunnel --no-autoupdate --config %USERPROFILE%\.cloudflared\config.yml run splendor`
   - 隧道配置在 `%USERPROFILE%\.cloudflared\config.yml`（含 credentials-file），隧道进程**不会开机自启**。
 - 公网：cloudflared 隧道指向 localhost:3000 → https://game.ruciazyt.cn/ 。
-- 测试（各自独立端口，可直接跑，工作目录 = `D:\programe`）：
+- 测试（各自独立端口，可直接跑，工作目录 = `D:\Splendor`）：
   `node tools/test/rules-test.js`、`node tools/test/render-test.mjs`、`node tools/test/smoke-test.js`、
   `node tools/test/multiplayer-test.js`、`node tools/test/mixed-test.js`、`node tools/test/basepath-test.js`、
   `node tools/test/cache-test.js`、`node tools/test/room-test.js`、`node tools/test/idle-test.js`。
