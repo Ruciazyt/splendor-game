@@ -270,15 +270,30 @@ cloudflared tunnel run splendor          # 注册为 Windows 服务可开机自�
 
 | 项目 | 值 |
 | --- | --- |
-| 访问地址 | `https://game.ruciazyt.cn/` |
-| 隧道名 / ID | `splendor` / `66b8c54a-306c-48b3-908a-014f400255a4` |
-| DNS | `game.ruciazyt.cn` CNAME → `<隧道ID>.cfargotunnel.com`（Cloudflare 橙云代理） |
-| ingress | `game.ruciazyt.cn` → `http://localhost:3000`，兜底 404 |
-| 隧道配置 | `~/.cloudflared/config.yml` |
-| 授权证书 | `~/.cloudflared/cert.pem`（`tunnel login` 生成） |
-| 启动命令 | `tools\cloudflared.exe tunnel --config %USERPROFILE%\.cloudflared\config.yml run splendor` |
+| 访问地址 | `http://124.221.228.93:3000` |
+| 服务器 | Ubuntu 24.04 / Node v22 / 2 vCPU / 1.9GB 内存 |
+| 代码目录 | `~/splendor-game`（上一版留在 `~/splendor-game.old`，可回滚） |
+| 服务单元 | `splendor.service`（systemd 守护 + 崩溃自启 + 开机自启） |
+| 更新方式 | **SFTP 整仓同步**（服务器连不上 GitHub，`git pull` 会卡死） |
+| 一键部署 | 根目录 `deploy.bat` → `tools/deploy/deploy.ps1` |
 
-部署脚本已备好：`tools/deploy/deploy-tunnel.ps1`（创建隧道 + 绑定 DNS + 写配置 + 启动），
+**一键部署**（改完代码 → 跑这一条就行）：
+
+```
+deploy.bat            REM 双击：提示输入 SSH 密码（不回显），自动同步 + 换目录 + 重启 + 健康检查
+```
+
+脚本做的事：装 `ssh2` 到 `%TEMP%`（仓库外，不入库）→ 询问密码（只进内存/环境变量）→
+`tools/deploy/sftp-sync.js` 整仓推送 → 远端停服 / 旧目录改名 `.old` / 新目录就位 / 启服 /
+`curl /health` → 回来复查公网地址。
+
+要回滚上一版：
+
+```bash
+sudo systemctl stop splendor && rm -rf ~/splendor-game && mv ~/splendor-game.old ~/splendor-game && sudo systemctl start splendor
+```
+
+本机自建隧道（临时用）：`tools/deploy/deploy-tunnel.ps1`（创建隧道 + 绑定 DNS + 写配置 + 启动），
 `tools/deploy/setup-tunnel.js` 是走 API Token 的等价版本，`tools/deploy/tunnel-check.js` 负责自检。
 
 ### 6.4 几个注意点

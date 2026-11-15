@@ -130,8 +130,10 @@ export function cardFace(card, opts = {}) {
         ${opts.source === 'market' ? `<button class="btn btn--ghost btn--sm" data-act="reserve" data-level="${card.level}" data-index="${opts.index}">留</button>` : ''}
       </div>`
     : '';
+  // 市场上可买的卡用脉冲金边；侧栏的保留卡改用静态描边（staticBuy），避免一直闪
+  const slotCls = opts.canBuy ? (opts.staticBuy ? 'card-slot--afford' : 'card-slot--buyable') : '';
   return `
-  <div class="card-slot ${opts.canBuy ? 'card-slot--buyable' : ''}" data-level="${card.level}" data-index="${opts.index}" data-source="${opts.source || 'market'}">
+  <div class="card-slot ${slotCls}" data-level="${card.level}" data-index="${opts.index}" data-source="${opts.source || 'market'}">
     <div class="card ${opts.actions ? 'card--act' : ''}" data-card="${esc(card.cardKey || card.uid || '')}"
          ${opts.canBuy ? 'data-dblbuy="1" title="双击这张卡购买"' : ''}>
       <img class="card__art" src="${src}" alt="等级${card.level}发展卡" loading="lazy" />
@@ -298,7 +300,7 @@ export function playersHtml(v) {
 export function reservedHtml(v) {
   const active = v.activePlayer;
   const reserved = (active.reserved || []).map((c, i) =>
-    cardFace(c, { index: i, source: 'reserved', actions: v.canAct, canBuy: v.canAct })).join('');
+    cardFace(c, { index: i, source: 'reserved', actions: v.canAct, canBuy: v.canAct, staticBuy: true })).join('');
   return `
     <h3 class="panel__title">${v.hotseat ? '当前玩家' : '我的保留卡'} <span class="hint">${(active.reserved || []).length}/3</span></h3>
     ${reserved ? `<div class="cards-row">${reserved}</div>`

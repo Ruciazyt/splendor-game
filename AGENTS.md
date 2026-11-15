@@ -17,13 +17,18 @@
 - `tools/build/` — `package.bat` / `package.ps1`（按需生成便携 zip，非交付物）`build-card-data.js`（重建数据表）。
 - `tools/assets/` — `fetch-assets.ps1`（卡图下载）。
 - `tools/deploy/` — `setup-tunnel.js` `deploy-tunnel.ps1` `tunnel-check.js`（隧道创建/绑定/自检）
-  `sftp-sync.js`（**更新云服务器代码用这个**：整仓 SFTP 推送 + 换目录 + 重启服务 + 健康检查）。
+  `sftp-sync.js`（**更新云服务器代码用这个**：整仓 SFTP 推送 + 换目录 + 重启服务 + 健康检查）
+  `deploy.ps1`（**一键部署入口**：装依赖 → 问密码 → 调 sftp-sync → 复查公网）。
 - `tools/cloudflared.exe` 保留在 tools 根目录（用户脚本 `start-all.bat` / `start-tunnel.bat` 按此路径找它），
   55MB 二进制不入库（已 gitignore）。
 
 ## 运行与验证
 
 - 开发服务端：`node server.js` → http://localhost:3000（工作目录必须是仓库根，静态目录按 `__dirname` 解析）。
+- **部署到云服务器：双击根目录 `deploy.bat`**（或 `powershell -File tools\deploy\deploy.ps1`）。
+  流程：装 ssh2 到 `%TEMP%` → 提示输入 SSH 密码（不回显、不入库）→ SFTP 整仓同步 → 换目录 → 重启 `splendor.service` → 远端 /health 检查 → 复查公网地址。
+  服务器连不上 GitHub，**只能用这条 SFTP 路径**，不要在服务器上跑 `git pull`/`git fetch`。
+  上一版留在 `~/splendor-game.old`，要回滚：`sudo systemctl stop splendor && rm -rf ~/splendor-game && mv ~/splendor-game.old ~/splendor-game && sudo systemctl start splendor`。
 - **一键起服：`start-all.bat` / `start-all.ps1`**（服务端 + 命名隧道 `splendor` + 公网自检）。重启电脑后公网 530/502 就是隧道没起来，跑这个脚本即可。
   - 命名隧道命令：`tools\cloudflared.exe tunnel --no-autoupdate --config %USERPROFILE%\.cloudflared\config.yml run splendor`
   - 隧道配置在 `%USERPROFILE%\.cloudflared\config.yml`（含 credentials-file），隧道进程**不会开机自启**。

@@ -472,6 +472,10 @@ select{appearance:none;-webkit-appearance:none;padding-right:40px;
   outline:2px solid var(--brass);outline-offset:2px;
   animation:brassPulse 2.8s ease-in-out infinite;
 }
+/* 侧栏的保留卡：静态描边表示「买得起」，但不做无限脉冲（侧栏一直闪太吵） */
+.card-slot--afford .card{
+  outline:2px solid var(--brass);outline-offset:2px;
+}
 .card__acts{display:flex;gap:var(--sp-md);justify-content:center;align-items:center;min-height:34px}
 .card__acts .btn{
   min-height:32px;padding:6px 16px;border-radius:var(--r-pill);

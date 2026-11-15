@@ -53,7 +53,9 @@ const base = {
       index: 0, name: '玩家1', points: 5,
       tokens: { white: 3, blue: 3, red: 0, green: 0, black: 0, gold: 0 },
       bonuses: { white: 2, blue: 1, red: 0, green: 0, black: 0 },
-      bought: [], reserved: [], reservedCount: 0, nobles: []
+      bought: [], reservedCount: 1, nobles: [],
+      reserved: [{ cardKey: 'L1-05', level: 1, points: 3, bonus: { color: 'green', count: 1 },
+        cost: { white: 1, blue: 0, red: 0, green: 0, black: 0 }, image: 'L1-05.jpg' }]
     }
   ],
   pending: null,
@@ -91,6 +93,7 @@ const checks = [
   ['黄金堆不可点选（不进入拿取动作）', !!goldCell && !goldCell.includes('data-act="pick-token"') && !goldCell.includes('data-act="pick-two"')],
   ['黄金堆注明「保留卡牌获得」', html.includes('保留卡牌获得')],
   ['可购买的卡带高亮描边', html.includes('card-slot--buyable')],
+  ['保留卡用静态描边（不参与脉冲高亮）', html.includes('card-slot--afford') && !/\.card-slot--afford[^{]*\{[^}]*animation/.test(css)],
   ['可购买的卡支持双击购买（无买按钮）', html.includes('data-dblbuy') && !html.includes('data-act="buy"')],
   ['持有用原版指示物贴图', html.includes('assets/tokens/white.png')],
   ['红利用宝石图形', html.includes('class="gem-img"') && html.includes('assets/gems/white.png')],
