@@ -149,9 +149,10 @@ shared/data/cards.js      # 90 张发展卡（等级/费用/点数/红利 + 卡�
 shared/data/nobles.js     # 10 张贵族圆板（需求 + 中英文名 + 圆板图）
 public/                   # 前端（原生 ES Module，无构建步骤）
   index.html  css/style.css  js/main.js  js/render.js  js/icons.js
-  assets/cards/    # 90 张原版发展卡 + 3 张卡背
-  assets/nobles/   # 10 张原版贵族圆板
-  assets/tokens/   # 6 枚原版指示物
+  assets/cards/    # 90 张发展卡（L1-xx.jpg / L2-xx.jpg / L3-xx.jpg）+ 3 张卡背（back-L1..L3.jpg）
+  assets/nobles/   # 10 张贵族圆板（noble_01.jpg … noble_10.jpg）
+  assets/tokens/   # 6 枚指示物（盘中宝石，持有哪些指示物 / 指示物台用）
+  assets/gems/     # 6 枚宝石切片（红利 / 贵族需求用，透明底正方形）
 DESIGN.md                  # 视觉规范：Apple 设计系统（单一 Action Blue / SF Pro 字阶 / 无装饰渐变）
 docs/rules-spec.md        # 规则规格与数据来源、校验说明
 rules/page_*.webp         # 官方规则书原图（第 6 页起为城市扩展，未实现）
@@ -297,10 +298,24 @@ cloudflared tunnel run splendor          # 注册为 Windows 服务可开机自�
 
 ## 6. 素材来源与复现
 
-卡面素材取自 GitHub 上复刻《璀璨宝石》的开源项目 **NicolasVero/splendor**（Java 实现），
-其 `application/splendor/images/` 内含本中文版全部卡面、贵族圆板与指示物贴图，
-`application/splendor/data/cartes.txt` / `nobles.txt` 则是与之对应的卡牌数据表
-（编码规则见该仓库 `splendor/metier/CreerCartes.java`、`CreerNobles.java`）。
+当前素材取自 GitHub 上的开源复刻项目 **jrbarronumd/Splendor**（`public-files/images/`）：
+
+| 用途 | 上游文件 | 本项目落地路径 |
+| --- | --- | --- |
+| 发展卡 | `cards/green-01..40.jpg`（等级 1）、`cards/yellow-01..30.jpg`（等级 2）、`cards/blue-01..20.jpg`（等级 3） | `public/assets/cards/L1-xx.jpg` 等 |
+| 卡背 | `cards/green-00.jpg` / `yellow-00.jpg` / `blue-00.jpg` | `public/assets/cards/back-L1..L3.jpg` |
+| 贵族圆板 | `nobles/nobles-01..10.jpg` | `public/assets/nobles/noble_01..10.jpg` |
+| 指示物（盘中宝石） | `gems/{color}Gem-removebg.png` | `public/assets/tokens/{color}.png` |
+| 宝石切片（红利/需求） | `favicons/removebg-{color}Gem.png` | `public/assets/gems/{color}.png`（已裁成正方形） |
+
+**卡图与数据的对应关系是校验过的**：上游 `public-files/decks/cardDeck.js` 带有每张卡的
+（等级 / 点数 / 红利色 / 五色费用），按这四元组与本项目 `shared/data/cards.js` 求唯一匹配，
+**90 张全部一一对应、无重复、无剩余**；贵族则按需求签名（黑白红绿蓝五色需求）匹配，10 张同样唯一。
+因此换成上游卡面不会改变任何一张卡的规则数值。
+
+> 早期版本用的是中文版卡图（**NicolasVero/splendor**，Java 实现），
+> 其 `application/splendor/images/` 与 `data/cartes.txt` / `nobles.txt` 是同一套数据的另一份来源；
+> 现在的规则数值仍与它一致（见 `docs/rules-spec.md`）。
 
 本项目据此重建了数据与图片的对应关系，并做了三重校验：
 
@@ -313,6 +328,9 @@ cloudflared tunnel run splendor          # 注册为 Windows 服务可开机自�
 ```powershell
 powershell -ExecutionPolicy Bypass -File tools/assets/fetch-assets.ps1
 ```
+
+> 该脚本抓的是早期中文版卡图；当前 `assets/` 里的卡面与宝石来自 **jrbarronumd/Splendor**，
+> 走 `ghproxy.net` 镜像下载即可（`https://ghproxy.net/https://raw.githubusercontent.com/jrbarronumd/Splendor/master/public-files/images/...`）。
 
 数据表重建（需先准备 `cartes.txt` / `nobles.txt`）：
 

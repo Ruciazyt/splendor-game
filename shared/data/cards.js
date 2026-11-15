@@ -19,7 +19,7 @@ module.exports = {
       "red": 2,
       "green": 0
     },
-    "image": "dev_I_01.png"
+    "image": "L1-01.jpg"
   },
   {
     "id": "L1-02",
@@ -37,7 +37,7 @@ module.exports = {
       "red": 0,
       "green": 0
     },
-    "image": "dev_I_02.png"
+    "image": "L1-02.jpg"
   },
   {
     "id": "L1-03",
@@ -55,7 +55,7 @@ module.exports = {
       "red": 0,
       "green": 0
     },
-    "image": "dev_I_03.png"
+    "image": "L1-03.jpg"
   },
   {
     "id": "L1-04",
@@ -73,7 +73,7 @@ module.exports = {
       "red": 0,
       "green": 0
     },
-    "image": "dev_I_04.png"
+    "image": "L1-04.jpg"
   },
   {
     "id": "L1-05",
@@ -91,7 +91,7 @@ module.exports = {
       "red": 0,
       "green": 2
     },
-    "image": "dev_I_05.png"
+    "image": "L1-05.jpg"
   },
   {
     "id": "L1-06",
@@ -109,7 +109,7 @@ module.exports = {
       "red": 1,
       "green": 1
     },
-    "image": "dev_I_06.png"
+    "image": "L1-06.jpg"
   },
   {
     "id": "L1-07",
@@ -127,7 +127,7 @@ module.exports = {
       "red": 1,
       "green": 2
     },
-    "image": "dev_I_07.png"
+    "image": "L1-07.jpg"
   },
   {
     "id": "L1-08",
@@ -145,7 +145,7 @@ module.exports = {
       "red": 0,
       "green": 4
     },
-    "image": "dev_I_08.png"
+    "image": "L1-08.jpg"
   },
   {
     "id": "L1-09",
@@ -163,7 +163,7 @@ module.exports = {
       "red": 0,
       "green": 0
     },
-    "image": "dev_I_09.png"
+    "image": "L1-09.jpg"
   },
   {
     "id": "L1-10",
@@ -181,7 +181,7 @@ module.exports = {
       "red": 0,
       "green": 0
     },
-    "image": "dev_I_10.png"
+    "image": "L1-10.jpg"
   },
   {
     "id": "L1-11",
@@ -199,7 +199,7 @@ module.exports = {
       "red": 0,
       "green": 2
     },
-    "image": "dev_I_11.png"
+    "image": "L1-11.jpg"
   },
   {
     "id": "L1-12",
@@ -217,7 +217,7 @@ module.exports = {
       "red": 1,
       "green": 3
     },
-    "image": "dev_I_12.png"
+    "image": "L1-12.jpg"
   },
   {
     "id": "L1-13",
@@ -235,7 +235,7 @@ module.exports = {
       "red": 2,
       "green": 2
     },
-    "image": "dev_I_13.png"
+    "image": "L1-13.jpg"
   },
   {
     "id": "L1-14",
@@ -253,7 +253,7 @@ module.exports = {
       "red": 1,
       "green": 1
     },
-    "image": "dev_I_14.png"
+    "image": "L1-14.jpg"
   },
   {
     "id": "L1-15",
@@ -271,7 +271,7 @@ module.exports = {
       "red": 2,
       "green": 1
     },
-    "image": "dev_I_15.png"
+    "image": "L1-15.jpg"
   },
   {
     "id": "L1-16",
@@ -289,7 +289,7 @@ module.exports = {
       "red": 4,
       "green": 0
     },
-    "image": "dev_I_16.png"
+    "image": "L1-16.jpg"
   },
   {
     "id": "L1-17",
@@ -307,7 +307,7 @@ module.exports = {
       "red": 0,
       "green": 0
     },
-    "image": "dev_I_17.png"
+    "image": "L1-17.jpg"
   },
   {
     "id": "L1-18",
@@ -325,7 +325,7 @@ module.exports = {
       "red": 3,
       "green": 0
     },
-    "image": "dev_I_18.png"
+    "image": "L1-18.jpg"
   },
   {
     "id": "L1-19",
@@ -343,7 +343,7 @@ module.exports = {
       "red": 2,
       "green": 0
     },
-    "image": "dev_I_19.png"
+    "image": "L1-19.jpg"
   },
   {
     "id": "L1-20",
@@ -361,7 +361,7 @@ module.exports = {
       "red": 0,
       "green": 1
     },
-    "image": "dev_I_20.png"
+    "image": "L1-20.jpg"
   },
   {
     "id": "L1-21",
@@ -379,7 +379,7 @@ module.exports = {
       "red": 2,
       "green": 0
     },
-    "image": "dev_I_21.png"
+    "image": "L1-21.jpg"
   },
   {
     "id": "L1-22",
@@ -397,7 +397,7 @@ module.exports = {
       "red": 1,
       "green": 0
     },
-    "image": "dev_I_22.png"
+    "image": "L1-22.jpg"
   },
   {
     "id": "L1-23",
@@ -415,7 +415,7 @@ module.exports = {
       "red": 1,
       "green": 0
     },
-    "image": "dev_I_23.png"
+    "image": "L1-23.jpg"
   },
   {
     "id": "L1-24",
@@ -433,7 +433,7 @@ module.exports = {
       "red": 0,
       "green": 0
     },
-    "image": "dev_I_24.png"
+    "image": "L1-24.jpg"
   },
   {
     "id": "L1-25",
@@ -451,7 +451,7 @@ module.exports = {
       "red": 0,
       "green": 1
     },
-    "image": "dev_I_25.png"
+    "image": "L1-25.jpg"
   },
   {
     "id": "L1-26",
@@ -469,7 +469,7 @@ module.exports = {
       "red": 0,
       "green": 0
     },
-    "image": "dev_I_26.png"
+    "image": "L1-26.jpg"
   },
   {
     "id": "L1-27",
@@ -487,7 +487,7 @@ module.exports = {
       "red": 2,
       "green": 0
     },
-    "image": "dev_I_27.png"
+    "image": "L1-27.jpg"
   },
   {
     "id": "L1-28",
@@ -505,7 +505,7 @@ module.exports = {
       "red": 1,
       "green": 0
     },
-    "image": "dev_I_28.png"
+    "image": "L1-28.jpg"
   },
   {
     "id": "L1-29",
@@ -523,7 +523,7 @@ module.exports = {
       "red": 0,
       "green": 1
     },
-    "image": "dev_I_29.png"
+    "image": "L1-29.jpg"
   },
   {
     "id": "L1-30",
@@ -541,7 +541,7 @@ module.exports = {
       "red": 0,
       "green": 1
     },
-    "image": "dev_I_30.png"
+    "image": "L1-30.jpg"
   },
   {
     "id": "L1-31",
@@ -559,7 +559,7 @@ module.exports = {
       "red": 0,
       "green": 1
     },
-    "image": "dev_I_31.png"
+    "image": "L1-31.jpg"
   },
   {
     "id": "L1-32",
@@ -577,7 +577,7 @@ module.exports = {
       "red": 0,
       "green": 0
     },
-    "image": "dev_I_32.png"
+    "image": "L1-32.jpg"
   },
   {
     "id": "L1-33",
@@ -595,7 +595,7 @@ module.exports = {
       "red": 1,
       "green": 2
     },
-    "image": "dev_I_33.png"
+    "image": "L1-33.jpg"
   },
   {
     "id": "L1-34",
@@ -613,7 +613,7 @@ module.exports = {
       "red": 0,
       "green": 3
     },
-    "image": "dev_I_34.png"
+    "image": "L1-34.jpg"
   },
   {
     "id": "L1-35",
@@ -631,7 +631,7 @@ module.exports = {
       "red": 0,
       "green": 2
     },
-    "image": "dev_I_35.png"
+    "image": "L1-35.jpg"
   },
   {
     "id": "L1-36",
@@ -649,7 +649,7 @@ module.exports = {
       "red": 3,
       "green": 1
     },
-    "image": "dev_I_36.png"
+    "image": "L1-36.jpg"
   },
   {
     "id": "L1-37",
@@ -667,7 +667,7 @@ module.exports = {
       "red": 1,
       "green": 0
     },
-    "image": "dev_I_37.png"
+    "image": "L1-37.jpg"
   },
   {
     "id": "L1-38",
@@ -685,7 +685,7 @@ module.exports = {
       "red": 1,
       "green": 1
     },
-    "image": "dev_I_38.png"
+    "image": "L1-38.jpg"
   },
   {
     "id": "L1-39",
@@ -703,7 +703,7 @@ module.exports = {
       "red": 1,
       "green": 1
     },
-    "image": "dev_I_39.png"
+    "image": "L1-39.jpg"
   },
   {
     "id": "L1-40",
@@ -721,7 +721,7 @@ module.exports = {
       "red": 0,
       "green": 0
     },
-    "image": "dev_I_40.png"
+    "image": "L1-40.jpg"
   },
   {
     "id": "L2-01",
@@ -739,7 +739,7 @@ module.exports = {
       "red": 2,
       "green": 3
     },
-    "image": "dev_II_01.png"
+    "image": "L2-01.jpg"
   },
   {
     "id": "L2-02",
@@ -757,7 +757,7 @@ module.exports = {
       "red": 3,
       "green": 0
     },
-    "image": "dev_II_02.png"
+    "image": "L2-02.jpg"
   },
   {
     "id": "L2-03",
@@ -775,7 +775,7 @@ module.exports = {
       "red": 4,
       "green": 1
     },
-    "image": "dev_II_03.png"
+    "image": "L2-03.jpg"
   },
   {
     "id": "L2-04",
@@ -793,7 +793,7 @@ module.exports = {
       "red": 5,
       "green": 0
     },
-    "image": "dev_II_04.png"
+    "image": "L2-04.jpg"
   },
   {
     "id": "L2-05",
@@ -811,7 +811,7 @@ module.exports = {
       "red": 5,
       "green": 0
     },
-    "image": "dev_II_05.png"
+    "image": "L2-05.jpg"
   },
   {
     "id": "L2-06",
@@ -829,7 +829,7 @@ module.exports = {
       "red": 0,
       "green": 0
     },
-    "image": "dev_II_06.png"
+    "image": "L2-06.jpg"
   },
   {
     "id": "L2-07",
@@ -847,7 +847,7 @@ module.exports = {
       "red": 3,
       "green": 2
     },
-    "image": "dev_II_07.png"
+    "image": "L2-07.jpg"
   },
   {
     "id": "L2-08",
@@ -865,7 +865,7 @@ module.exports = {
       "red": 0,
       "green": 3
     },
-    "image": "dev_II_08.png"
+    "image": "L2-08.jpg"
   },
   {
     "id": "L2-09",
@@ -883,7 +883,7 @@ module.exports = {
       "red": 1,
       "green": 0
     },
-    "image": "dev_II_09.png"
+    "image": "L2-09.jpg"
   },
   {
     "id": "L2-10",
@@ -901,7 +901,7 @@ module.exports = {
       "red": 0,
       "green": 0
     },
-    "image": "dev_II_10.png"
+    "image": "L2-10.jpg"
   },
   {
     "id": "L2-11",
@@ -919,7 +919,7 @@ module.exports = {
       "red": 0,
       "green": 0
     },
-    "image": "dev_II_11.png"
+    "image": "L2-11.jpg"
   },
   {
     "id": "L2-12",
@@ -937,7 +937,7 @@ module.exports = {
       "red": 0,
       "green": 0
     },
-    "image": "dev_II_12.png"
+    "image": "L2-12.jpg"
   },
   {
     "id": "L2-13",
@@ -955,7 +955,7 @@ module.exports = {
       "red": 0,
       "green": 0
     },
-    "image": "dev_II_13.png"
+    "image": "L2-13.jpg"
   },
   {
     "id": "L2-14",
@@ -973,7 +973,7 @@ module.exports = {
       "red": 3,
       "green": 2
     },
-    "image": "dev_II_14.png"
+    "image": "L2-14.jpg"
   },
   {
     "id": "L2-15",
@@ -991,7 +991,7 @@ module.exports = {
       "red": 0,
       "green": 0
     },
-    "image": "dev_II_15.png"
+    "image": "L2-15.jpg"
   },
   {
     "id": "L2-16",
@@ -1009,7 +1009,7 @@ module.exports = {
       "red": 0,
       "green": 3
     },
-    "image": "dev_II_16.png"
+    "image": "L2-16.jpg"
   },
   {
     "id": "L2-17",
@@ -1027,7 +1027,7 @@ module.exports = {
       "red": 0,
       "green": 5
     },
-    "image": "dev_II_17.png"
+    "image": "L2-17.jpg"
   },
   {
     "id": "L2-18",
@@ -1045,7 +1045,7 @@ module.exports = {
       "red": 0,
       "green": 6
     },
-    "image": "dev_II_18.png"
+    "image": "L2-18.jpg"
   },
   {
     "id": "L2-19",
@@ -1063,7 +1063,7 @@ module.exports = {
       "red": 2,
       "green": 0
     },
-    "image": "dev_II_19.png"
+    "image": "L2-19.jpg"
   },
   {
     "id": "L2-20",
@@ -1081,7 +1081,7 @@ module.exports = {
       "red": 2,
       "green": 0
     },
-    "image": "dev_II_20.png"
+    "image": "L2-20.jpg"
   },
   {
     "id": "L2-21",
@@ -1099,7 +1099,7 @@ module.exports = {
       "red": 0,
       "green": 2
     },
-    "image": "dev_II_21.png"
+    "image": "L2-21.jpg"
   },
   {
     "id": "L2-22",
@@ -1117,7 +1117,7 @@ module.exports = {
       "red": 0,
       "green": 0
     },
-    "image": "dev_II_22.png"
+    "image": "L2-22.jpg"
   },
   {
     "id": "L2-23",
@@ -1135,7 +1135,7 @@ module.exports = {
       "red": 0,
       "green": 0
     },
-    "image": "dev_II_23.png"
+    "image": "L2-23.jpg"
   },
   {
     "id": "L2-24",
@@ -1153,7 +1153,7 @@ module.exports = {
       "red": 6,
       "green": 0
     },
-    "image": "dev_II_24.png"
+    "image": "L2-24.jpg"
   },
   {
     "id": "L2-25",
@@ -1171,7 +1171,7 @@ module.exports = {
       "red": 0,
       "green": 2
     },
-    "image": "dev_II_25.png"
+    "image": "L2-25.jpg"
   },
   {
     "id": "L2-26",
@@ -1189,7 +1189,7 @@ module.exports = {
       "red": 0,
       "green": 3
     },
-    "image": "dev_II_26.png"
+    "image": "L2-26.jpg"
   },
   {
     "id": "L2-27",
@@ -1207,7 +1207,7 @@ module.exports = {
       "red": 2,
       "green": 4
     },
-    "image": "dev_II_27.png"
+    "image": "L2-27.jpg"
   },
   {
     "id": "L2-28",
@@ -1225,7 +1225,7 @@ module.exports = {
       "red": 3,
       "green": 5
     },
-    "image": "dev_II_28.png"
+    "image": "L2-28.jpg"
   },
   {
     "id": "L2-29",
@@ -1243,7 +1243,7 @@ module.exports = {
       "red": 0,
       "green": 0
     },
-    "image": "dev_II_29.png"
+    "image": "L2-29.jpg"
   },
   {
     "id": "L2-30",
@@ -1261,7 +1261,7 @@ module.exports = {
       "red": 0,
       "green": 0
     },
-    "image": "dev_II_30.png"
+    "image": "L2-30.jpg"
   },
   {
     "id": "L3-01",
@@ -1279,7 +1279,7 @@ module.exports = {
       "red": 5,
       "green": 3
     },
-    "image": "dev_III_01.png"
+    "image": "L3-01.jpg"
   },
   {
     "id": "L3-02",
@@ -1297,7 +1297,7 @@ module.exports = {
       "red": 3,
       "green": 0
     },
-    "image": "dev_III_02.png"
+    "image": "L3-02.jpg"
   },
   {
     "id": "L3-03",
@@ -1315,7 +1315,7 @@ module.exports = {
       "red": 0,
       "green": 0
     },
-    "image": "dev_III_03.png"
+    "image": "L3-03.jpg"
   },
   {
     "id": "L3-04",
@@ -1333,7 +1333,7 @@ module.exports = {
       "red": 0,
       "green": 0
     },
-    "image": "dev_III_04.png"
+    "image": "L3-04.jpg"
   },
   {
     "id": "L3-05",
@@ -1351,7 +1351,7 @@ module.exports = {
       "red": 3,
       "green": 3
     },
-    "image": "dev_III_05.png"
+    "image": "L3-05.jpg"
   },
   {
     "id": "L3-06",
@@ -1369,7 +1369,7 @@ module.exports = {
       "red": 0,
       "green": 0
     },
-    "image": "dev_III_06.png"
+    "image": "L3-06.jpg"
   },
   {
     "id": "L3-07",
@@ -1387,7 +1387,7 @@ module.exports = {
       "red": 0,
       "green": 0
     },
-    "image": "dev_III_07.png"
+    "image": "L3-07.jpg"
   },
   {
     "id": "L3-08",
@@ -1405,7 +1405,7 @@ module.exports = {
       "red": 0,
       "green": 0
     },
-    "image": "dev_III_08.png"
+    "image": "L3-08.jpg"
   },
   {
     "id": "L3-09",
@@ -1423,7 +1423,7 @@ module.exports = {
       "red": 3,
       "green": 0
     },
-    "image": "dev_III_09.png"
+    "image": "L3-09.jpg"
   },
   {
     "id": "L3-10",
@@ -1441,7 +1441,7 @@ module.exports = {
       "red": 0,
       "green": 3
     },
-    "image": "dev_III_10.png"
+    "image": "L3-10.jpg"
   },
   {
     "id": "L3-11",
@@ -1459,7 +1459,7 @@ module.exports = {
       "red": 0,
       "green": 0
     },
-    "image": "dev_III_11.png"
+    "image": "L3-11.jpg"
   },
   {
     "id": "L3-12",
@@ -1477,7 +1477,7 @@ module.exports = {
       "red": 0,
       "green": 3
     },
-    "image": "dev_III_12.png"
+    "image": "L3-12.jpg"
   },
   {
     "id": "L3-13",
@@ -1495,7 +1495,7 @@ module.exports = {
       "red": 0,
       "green": 3
     },
-    "image": "dev_III_13.png"
+    "image": "L3-13.jpg"
   },
   {
     "id": "L3-14",
@@ -1513,7 +1513,7 @@ module.exports = {
       "red": 3,
       "green": 6
     },
-    "image": "dev_III_14.png"
+    "image": "L3-14.jpg"
   },
   {
     "id": "L3-15",
@@ -1531,7 +1531,7 @@ module.exports = {
       "red": 0,
       "green": 7
     },
-    "image": "dev_III_15.png"
+    "image": "L3-15.jpg"
   },
   {
     "id": "L3-16",
@@ -1549,7 +1549,7 @@ module.exports = {
       "red": 3,
       "green": 7
     },
-    "image": "dev_III_16.png"
+    "image": "L3-16.jpg"
   },
   {
     "id": "L3-17",
@@ -1567,7 +1567,7 @@ module.exports = {
       "red": 3,
       "green": 5
     },
-    "image": "dev_III_17.png"
+    "image": "L3-17.jpg"
   },
   {
     "id": "L3-18",
@@ -1585,7 +1585,7 @@ module.exports = {
       "red": 6,
       "green": 3
     },
-    "image": "dev_III_18.png"
+    "image": "L3-18.jpg"
   },
   {
     "id": "L3-19",
@@ -1603,7 +1603,7 @@ module.exports = {
       "red": 7,
       "green": 0
     },
-    "image": "dev_III_19.png"
+    "image": "L3-19.jpg"
   },
   {
     "id": "L3-20",
@@ -1621,7 +1621,7 @@ module.exports = {
       "red": 7,
       "green": 0
     },
-    "image": "dev_III_20.png"
+    "image": "L3-20.jpg"
   }
 ]
 };

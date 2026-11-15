@@ -65,7 +65,10 @@
 - 保留卡在右栏里最大 104px（`.cards-row .card-slot`），别让它撑满整栏。
 - 贵族圆板（横向变体，用于窄屏横滑）：中文名固定两行高（`grid-template-rows:40px auto`）+ 英文名单独一行，宝石行不再单独绘制。
 - 中栏面板标题与说明同行，说明用 11px（`.col--center .panel__title .hint`）。
-- 素材：红利、贵族需求、持有三处**共用 `assets/tokens/*.png`** 同一张贴图；`assets/gems/` 那套裁切图**已删除**（没有任何代码引用），不要重新引入。
+- 素材：**红利 / 贵族需求用 `assets/gems/*.png`**（宝石切片，透明底正方形），
+  **持有 / 指示物台用 `assets/tokens/*.png`**（盘中宝石）；两者都是上游 jrbarronumd/Splendor 的图。
+  卡面 = `assets/cards/L{1,2,3}-xx.jpg`，贵族 = `assets/nobles/noble_xx.jpg`，卡背 = `assets/cards/back-L*.jpg`。
+  换素材时必须按「等级+点数+红利色+费用」四元组做**唯一匹配**（90/90 已验证），别按文件名顺序硬套。
 - **字阶**：全局只用 28 / 21 / 17 / 14 / 12 / 10 六档（`--fs-lead` / `--fs-tagline` / `--fs-body` / `--fs-caption` / `--fs-fine` / `--fs-micro`）。
   不要再写 15px / 11px 这类阶外字号，也不要用裸 `font-size:14px`，一律引用变量。
   角色分配：声望数字 28 · 中栏面板标题 21 · 左右栏面板标题 17 · 玩家名/贵族名/正文 14 · 统计行/说明/战报 12 · 单位标签/需求数量/英文名 10。

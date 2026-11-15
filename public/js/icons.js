@@ -1,6 +1,7 @@
 // 图形：宝石 / 指示物 / 需求，全部为真实图形素材
-//  - 指示物用原版木牌贴图（public/assets/tokens/*.png）
-//  - 红利与贵族需求与「持有」共用同一张指示物贴图（assets/tokens/*.png），全局一致
+//  - 指示物（持有、指示物台）用盘中宝石贴图（public/assets/tokens/*.png）
+//  - 红利与贵族需求用宝石切片（public/assets/gems/*.png），透明底、正方形
+//  素材来源：github.com/jrbarronumd/Splendor（public-files/images）
 export const COLORS = ['white', 'blue', 'red', 'green', 'black'];
 export const ALL_COLORS = [...COLORS, 'gold'];
 
@@ -13,7 +14,7 @@ export const COLOR_META = {
   gold:  { name: '黄金', hex: '#d8a838', light: '#ffe6a8', deep: '#7d5711' }
 };
 
-// 原版指示物（木牌 + 宝石）贴图
+// 指示物：盘中宝石（木牌底座）
 export const COLOR_IMG = {
   white: 'assets/tokens/white.png',
   blue: 'assets/tokens/blue.png',
@@ -23,10 +24,20 @@ export const COLOR_IMG = {
   gold: 'assets/tokens/gold.png'
 };
 
+// 宝石切片：红利 / 贵族需求（透明底，已裁成正方形）
+export const GEM_IMG = {
+  white: 'assets/gems/white.png',
+  blue: 'assets/gems/blue.png',
+  red: 'assets/gems/red.png',
+  green: 'assets/gems/green.png',
+  black: 'assets/gems/black.png',
+  gold: 'assets/gems/gold.png'
+};
+
 export const CARD_BACK = {
-  1: 'assets/cards/dev_I_dos.png',
-  2: 'assets/cards/dev_II_dos.png',
-  3: 'assets/cards/dev_III_dos.png'
+  1: 'assets/cards/back-L1.jpg',
+  2: 'assets/cards/back-L2.jpg',
+  3: 'assets/cards/back-L3.jpg'
 };
 
 // 素材版本号（服务端注入）：素材地址带版本号后即可长期缓存，
@@ -37,18 +48,19 @@ export function av(url) {
   return url + (url.indexOf('?') >= 0 ? '&' : '?') + 'v=' + ASSET_V;
 }
 for (const k of Object.keys(COLOR_IMG)) COLOR_IMG[k] = av(COLOR_IMG[k]);
+for (const k of Object.keys(GEM_IMG)) GEM_IMG[k] = av(GEM_IMG[k]);
 for (const k of Object.keys(CARD_BACK)) CARD_BACK[k] = av(CARD_BACK[k]);
 
 let gemSeq = 0;
 
-/** 宝石图形（红利 / 贵族需求用）：与「持有」使用同一张原版指示物贴图 */
+/** 宝石图形（红利 / 贵族需求用）：宝石切片，透明底 */
 export function gem(color, size = 16) {
   const m = COLOR_META[color] || COLOR_META.white;
-  const src = COLOR_IMG[color] || COLOR_IMG.white;
+  const src = GEM_IMG[color] || GEM_IMG.white;
   return `<img class="gem-img" src="${src}" width="${size}" height="${size}" alt="${m.name}" title="${m.name}" />`;
 }
 
-/** 原版指示物贴图 */
+/** 指示物贴图（盘中宝石） */
 export function tokenImg(color, size = 22) {
   const m = COLOR_META[color] || COLOR_META.white;
   return `<img class="token-img" src="${COLOR_IMG[color]}" width="${size}" height="${size}" alt="${m.name}" title="${m.name}" />`;

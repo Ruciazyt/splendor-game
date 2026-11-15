@@ -37,14 +37,13 @@ cart.forEach((line, idx) => {
   COST_ORDER.forEach((c, i) => { cost[c] = digits[i] || 0; });
   const interval = level === 1 ? 8 : level === 2 ? 6 : 4;
   const bonusColor = BONUS_ORDER[Math.min(4, Math.floor((inLevel - 1) / interval))];
-  const prefix = level === 1 ? 'I' : level === 2 ? 'II' : 'III';
   cards.push({
     id: 'L' + level + '-' + String(inLevel).padStart(2, '0'),
     cardKey: 'L' + level + '-' + String(inLevel).padStart(2, '0'),
     level, points,
     bonus: { color: bonusColor, count: 1 },
     cost,
-    image: 'dev_' + prefix + '_' + String(inLevel).padStart(2, '0') + '.png'
+    image: 'L' + level + '-' + String(inLevel).padStart(2, '0') + '.jpg'
   });
 });
 
@@ -57,7 +56,7 @@ const nobles = nobl.map((line, idx) => {
     id: 'N-' + String(idx + 1).padStart(2, '0'),
     name: nm[0], nameZh: nm[1],
     require, points: 3,
-    image: 'noble_' + String(idx + 1).padStart(2, '0') + '.png'
+    image: 'noble_' + String(idx + 1).padStart(2, '0') + '.jpg'
   };
 });
 

@@ -38,14 +38,14 @@ const base = {
     [
       {
         cardKey: 'L1-01', level: 1, points: 0, bonus: { color: 'white', count: 1 },
-        cost: { white: 1, blue: 1, red: 0, green: 0, black: 0 }, image: 'dev_I_01.png'
+        cost: { white: 1, blue: 1, red: 0, green: 0, black: 0 }, image: 'L1-01.jpg'
       }
     ],
     [],
     []
   ],
   nobles: [
-    { id: 'N-01', name: 'Mary Stuart', nameZh: '玛丽', image: 'noble_01.png',
+    { id: 'N-01', name: 'Mary Stuart', nameZh: '玛丽', image: 'noble_01.jpg',
       require: { white: 0, blue: 0, black: 0, red: 4, green: 4 }, points: 3, takenBy: null }
   ],
   players: [
@@ -93,8 +93,8 @@ const checks = [
   ['可购买的卡带高亮描边', html.includes('card-slot--buyable')],
   ['可购买的卡支持双击购买（无买按钮）', html.includes('data-dblbuy') && !html.includes('data-act="buy"')],
   ['持有用原版指示物贴图', html.includes('assets/tokens/white.png')],
-  ['红利用宝石图形', html.includes('class="gem-img"')],
-  ['贵族用原版圆板图', html.includes('assets/nobles/noble_01.png')],
+  ['红利用宝石图形', html.includes('class="gem-img"') && html.includes('assets/gems/white.png')],
+  ['贵族用原版圆板图', html.includes('assets/nobles/noble_01.jpg')],
   ['市场等级顺序 1→2→3', html.indexOf('等级 1') < html.indexOf('等级 2') && html.indexOf('等级 2') < html.indexOf('等级 3')],
   ['战报位于左栏（指示物之后）', html.indexOf('ledger') > html.indexOf('指示物')],
   ['战报在右栏（玩家与保留卡之后）', html.indexOf('col--center') < html.indexOf('col--right') && html.indexOf('class="players"') < html.indexOf('ledger')],

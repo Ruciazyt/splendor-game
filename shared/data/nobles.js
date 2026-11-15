@@ -15,7 +15,7 @@ module.exports = {
       "green": 4
     },
     "points": 3,
-    "image": "noble_01.png"
+    "image": "noble_01.jpg"
   },
   {
     "id": "N-02",
@@ -29,7 +29,7 @@ module.exports = {
       "green": 0
     },
     "points": 3,
-    "image": "noble_02.png"
+    "image": "noble_02.jpg"
   },
   {
     "id": "N-03",
@@ -43,7 +43,7 @@ module.exports = {
       "green": 0
     },
     "points": 3,
-    "image": "noble_03.png"
+    "image": "noble_03.jpg"
   },
   {
     "id": "N-04",
@@ -57,7 +57,7 @@ module.exports = {
       "green": 4
     },
     "points": 3,
-    "image": "noble_04.png"
+    "image": "noble_04.jpg"
   },
   {
     "id": "N-05",
@@ -71,7 +71,7 @@ module.exports = {
       "green": 0
     },
     "points": 3,
-    "image": "noble_05.png"
+    "image": "noble_05.jpg"
   },
   {
     "id": "N-06",
@@ -85,7 +85,7 @@ module.exports = {
       "green": 3
     },
     "points": 3,
-    "image": "noble_06.png"
+    "image": "noble_06.jpg"
   },
   {
     "id": "N-07",
@@ -99,7 +99,7 @@ module.exports = {
       "green": 3
     },
     "points": 3,
-    "image": "noble_07.png"
+    "image": "noble_07.jpg"
   },
   {
     "id": "N-08",
@@ -113,7 +113,7 @@ module.exports = {
       "green": 0
     },
     "points": 3,
-    "image": "noble_08.png"
+    "image": "noble_08.jpg"
   },
   {
     "id": "N-09",
@@ -127,7 +127,7 @@ module.exports = {
       "green": 3
     },
     "points": 3,
-    "image": "noble_09.png"
+    "image": "noble_09.jpg"
   },
   {
     "id": "N-10",
@@ -141,7 +141,7 @@ module.exports = {
       "green": 0
     },
     "points": 3,
-    "image": "noble_10.png"
+    "image": "noble_10.jpg"
   }
 ]
 };

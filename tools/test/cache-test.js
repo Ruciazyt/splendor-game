@@ -26,12 +26,12 @@ function get(port, path, headers) {
   process.on('exit', () => stopTestServer(srv));
 
   console.log('图片素材（卡片 / 指示物 / 贵族）：');
-  const img = await get(PORT, '/assets/cards/dev_I_01.png');
+  const img = await get(PORT, '/assets/cards/L1-01.jpg');
   assert(img.status === 200, '图片可访问');
   assert(/public/.test(img.headers['cache-control'] || '') && /max-age=(\d+)/.test(img.headers['cache-control'] || ''),
     '图片带长期缓存（public, max-age=…），重绘不再发请求');
   assert(!!img.headers.etag, '图片带 ETag');
-  const img304 = await get(PORT, '/assets/cards/dev_I_01.png', { 'If-None-Match': img.headers.etag });
+  const img304 = await get(PORT, '/assets/cards/L1-01.jpg', { 'If-None-Match': img.headers.etag });
   assert(img304.status === 304, '命中 ETag 时返回 304，不重复传输');
 
   console.log('代码（html / css / js）：');
