@@ -32,7 +32,8 @@
   （`start-all.bat` 只起服务端；要临时用域名才跑 `start-all.bat tunnel`）。
 - **服务器拉不到 GitHub**（腾讯云出口到 github.com 超时），`deploy.sh` 里的 `git fetch` 会失败。
   更新服务器代码的可靠做法：跑 `node tools/deploy/sftp-sync.js`（整仓 SFTP 推送 + 自动换目录 + 重启服务 + 健康检查）；
-  它需要 `ssh2`（临时装在仓库外，用 `NODE_PATH` 指过去）。SSH 密码是 `[removed]`（用户 ubuntu，免密 sudo）。
+  它需要 `ssh2`（临时装在仓库外，用 `NODE_PATH` 指过去）。
+  SSH 账号是 `ubuntu@124.221.228.93`（免密 sudo 可用）；**密码不要写进仓库**，用环境变量 `DEPLOY_PASS` 传入。
 - 测试（各自独立端口，可直接跑，工作目录 = `D:\Splendor`）：
   `node tools/test/rules-test.js`、`node tools/test/render-test.mjs`、`node tools/test/smoke-test.js`、
   `node tools/test/multiplayer-test.js`、`node tools/test/mixed-test.js`、`node tools/test/basepath-test.js`、
