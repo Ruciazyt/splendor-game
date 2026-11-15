@@ -1,7 +1,7 @@
 'use strict';
 /**
  * 多房间测试：新建房间 / 按房间码加入 / 房间之间互相隔离 / 主桌默认存在。
- * 用法： node tools/room-test.js [port]
+ * 用法： node tools/test/room-test.js [port]
  */
 const { startTestServer, stopTestServer } = require('./test-server.js');
 const { connect } = require('./ws-client.js');

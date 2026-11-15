@@ -375,15 +375,20 @@ select{appearance:none;-webkit-appearance:none;padding-right:40px;
 .col--left .nobles{flex-direction:column;gap:0;justify-content:flex-start}
 .col--left .nobles .noble{
   flex:0 0 auto;width:100%;max-width:none;
-  display:flex;align-items:center;gap:var(--sp-sm);
-  text-align:left;padding:6px 0;
+  display:flex;align-items:center;gap:var(--sp-md);
+  text-align:left;padding:8px 0;
   border-bottom:1px solid var(--hairline-soft);
 }
 .col--left .nobles .noble:last-child{border-bottom:0}
-.col--left .noble__art{width:52px;height:52px;flex:0 0 auto;aspect-ratio:auto}
+/* 贵族圆板图放大：原图 145×145，112px 显示依然清晰，需求宝石能看清 */
+.col--left .noble__art{
+  width:clamp(76px,6vw,112px);height:clamp(76px,6vw,112px);
+  flex:0 0 auto;aspect-ratio:auto;
+}
 .col--left .noble__name{
   margin-top:0;flex:1 1 auto;min-width:0;
-  display:grid;grid-template-rows:auto auto;justify-items:start;align-items:start;
+  display:grid;grid-template-rows:auto auto;justify-items:start;align-items:center;
+  gap:2px;
 }
 .col--left .noble__owner,.col--left .noble__flag{position:static;order:3;flex:0 0 auto}
 .tier__cards .card-slot,.tier__cards .deck{

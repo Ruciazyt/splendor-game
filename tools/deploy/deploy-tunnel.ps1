@@ -1,5 +1,5 @@
 $ErrorActionPreference='Stop'
-$ws  = 'C:\Users\WINDOWS\.minimax\sessions\mvs_fd4c431d9b58403292d62122780edc71\workspace'
+$ws  = Split-Path -Parent (Split-Path -Parent $PSScriptRoot)   # 项目根
 $cf  = Join-Path $env:USERPROFILE '.cloudflared'
 $exe = Join-Path $ws 'tools\cloudflared.exe'
 $name = 'splendor'

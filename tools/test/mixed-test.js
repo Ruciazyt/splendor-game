@@ -2,7 +2,7 @@
 /**
  * 混合模式测试：1 位联机好友 + 2 位本机热座玩家同桌。
  * 验证席位归属、回合权限、保留卡私密性。
- * 用法： node tools/mixed-test.js [port]
+ * 用法： node tools/test/mixed-test.js [port]
  */
 const { startTestServer, stopTestServer } = require('./test-server.js');
 const { connect } = require('./ws-client.js');

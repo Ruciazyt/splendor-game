@@ -8,8 +8,8 @@ const http = require('http');
 const path = require('path');
 
 function startTestServer(port = 3199, extraEnv) {
-  const child = spawn(process.execPath, [path.join(__dirname, '..', 'server.js')], {
-    cwd: path.join(__dirname, '..'),
+  const child = spawn(process.execPath, [path.join(__dirname, '..', '..', 'server.js')], {
+    cwd: path.join(__dirname, '..', '..'),
     env: Object.assign({}, process.env, { PORT: String(port) }, extraEnv || {}),
     stdio: 'ignore'
   });

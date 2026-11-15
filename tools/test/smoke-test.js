@@ -1,7 +1,7 @@
 'use strict';
 /**
  * 冒烟测试：用内置 WebSocket 客户端连上服务端，自动打完整整一局游戏。
- * 用法： node tools/smoke-test.js [port]
+ * 用法： node tools/test/smoke-test.js [port]
  */
 const http = require('http');
 const crypto = require('crypto');
@@ -100,8 +100,12 @@ function pickAction(game, myIndex, blocked) {
       }
     }
   }
-  if (me.reserved.length < 3 && market.length) {
-    return { type: 'reserve', source: 'market', level: 3, index: 0 };
+  // 保留：挑一个仍然有卡的等级（固定指向等级3 会在该行买空后反复失败 → 死循环）
+  if (me.reserved.length < 3) {
+    for (const lvl of [3, 2, 1]) {
+      const row = game.market[lvl - 1] || [];
+      if (row.length) return { type: 'reserve', source: 'market', level: lvl, index: 0 };
+    }
   }
   // 拿取：尽量拿 3 种不同颜色
   // 拿取动作只涉及 5 种寶石指示物，黄金只能靠「保留卡牌」取得

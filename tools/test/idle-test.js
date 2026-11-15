@@ -2,7 +2,7 @@
 /**
  * 不活跃对局回收测试：对局长时间无操作会被结束并回收；有任何操作则不会。
  * 用 IDLE_GAME_MS / IDLE_WARN_MS 把 5 分钟缩短成秒级来验证。
- * 用法： node tools/idle-test.js [port]
+ * 用法： node tools/test/idle-test.js [port]
  */
 const { startTestServer, stopTestServer } = require('./test-server.js');
 const { connect } = require('./ws-client.js');

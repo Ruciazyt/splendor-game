@@ -2,7 +2,7 @@
 /**
  * 静态资源缓存测试：图片素材长期缓存 + 协商缓存（ETag/304），
  * 保证牌桌重绘时不会反复请求卡片图片。
- * 用法： node tools/cache-test.js [port]
+ * 用法： node tools/test/cache-test.js [port]
  */
 const http = require('http');
 const { startTestServer, stopTestServer } = require('./test-server.js');

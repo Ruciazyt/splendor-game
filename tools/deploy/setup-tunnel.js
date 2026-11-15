@@ -5,7 +5,7 @@
  * 需要 Cloudflare API Token（权限：Account:Cloudflare Tunnel:Edit、Zone:DNS:Edit、Zone:Zone:Read）
  * Token 从环境变量 CLOUDFLARE_API_TOKEN 读取，或放在 tools/.cf-token 文件里。
  *
- * 用法： node tools/setup-tunnel.js --domain ruciazyt.cn --host www --path /splendor --origin https://ruciazyt.github.io
+ * 用法： node tools/deploy/setup-tunnel.js --domain ruciazyt.cn --host www --path /splendor --origin https://ruciazyt.github.io
  */
 const fs = require('fs');
 const path = require('path');
@@ -96,6 +96,6 @@ async function api(pathname, method, body) {
   }
   console.log('');
   console.log('完成。启动隧道：');
-  console.log('  tools\\cloudflared.exe tunnel --no-autoupdate --config tools\\cloudflared-config.yml run ' + TUNNEL_NAME);
+  console.log('  tools\\cloudflared.exe tunnel --no-autoupdate --config %USERPROFILE%\\.cloudflared\\config.yml run ' + TUNNEL_NAME);
   console.log('然后用 BASE_PATH=' + BASE_PATH + ' node server.js 启动游戏。');
 })().catch((e) => { console.error('失败：' + e.message); process.exit(1); });

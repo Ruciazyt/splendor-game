@@ -1,12 +1,12 @@
 /**
  * 渲染层单测：验证「可购买卡流光边框」「持有/红利的图形化」「等级顺序」「战报位置」等 UI 契约。
- * 用法： node tools/render-test.mjs
+ * 用法： node tools/test/render-test.mjs
  */
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath, pathToFileURL } from 'url';
 
-const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
 const tmp = path.join(root, '.render-test-tmp');
 fs.mkdirSync(tmp, { recursive: true });
 fs.copyFileSync(path.join(root, 'public/js/icons.js'), path.join(tmp, 'icons.mjs'));
@@ -105,6 +105,10 @@ const checks = [
   ['暖调羊皮纸 + 黄铜配色', css.includes('--paper:#f4ead0') && css.includes('--brass-2:#c79a45')],
   ['尊重 prefers-reduced-motion', css.includes('prefers-reduced-motion')],
   ['贵族卡不再显示宝石需求行', !html.includes('noble__req')],
+  ['左栏贵族圆板图已放大（最小 ≥ 76px）', (() => {
+    const m = /\.col--left \.noble__art\{[^}]*?clamp\((\d+)px/.exec(css);
+    return !!m && Number(m[1]) >= 76;
+  })()],
   ['音效开关存在', html.includes('data-act="sound"')],
   ['样式表括号配平（语法完整性）', balanced(css)],
   ['手机单栏重排（拿取区在最前）', css.includes('.col{display:contents}') && css.includes('.col--left > .panel:first-child{order:1}')],

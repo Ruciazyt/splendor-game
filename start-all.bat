@@ -47,7 +47,7 @@ goto CHECK_PUBLIC
 
 :NO_TUNNEL_CFG
 echo   [2/2] 缺少隧道配置 %USERPROFILE%\.cloudflared\config.yml
-echo         先执行一次 tools\deploy-tunnel.ps1 创建隧道
+echo         先执行一次 tools\deploy\deploy-tunnel.ps1 创建隧道
 goto CHECK_PUBLIC
 
 REM ---- 3) 自检 -------------------------------------------------------

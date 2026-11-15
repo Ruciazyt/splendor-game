@@ -2,9 +2,23 @@
 
 ## 目录与产物
 
-- 根目录 = 开发源（`public/`、`server/`、`shared/`、`tools/`）。
-- `splendor-web/` = 打包副本（与根目录内容一致）；`splendor-web.zip` = 最终交付包（根目录为内容根，不含外层文件夹）。
-- **改完源码必须同步到 `splendor-web/` 并重建 zip**，否则交付包与线上不一致。
+> - **固定根目录 = `D:\programe`**，所有 session 共用这一份代码；不要在别的盘/会话目录另起副本。
+>   服务端、隧道、测试、打包全部在 `D:\programe` 下跑（工作目录必须是仓库根，静态目录按 `__dirname` 解析）。
+> - 根目录 = **唯一源码**（`public/`、`server/`、`shared/`、`tools/`、`docs/`、`rules/`）。
+> - `splendor-web.zip` = 最终交付包（根目录为内容根，不含外层文件夹），由 `tools\build\package.bat` 一键生成。
+> - **不要保留解压副本**（`splendor-web/`）：改完源码跑一次 `tools\build\package.bat` 重建 zip 即可，
+>   避免同一份代码出现两处副本、改了一处忘了另一处。
+
+## tools/ 目录分类（改完记得同步本文档）
+
+- `tools/test/` — 全部测试：`rules-test.js` `render-test.mjs` `smoke-test.js` `multiplayer-test.js`
+  `mixed-test.js` `basepath-test.js` `cache-test.js` `room-test.js` `idle-test.js`
+  + `test-server.js`（测试专用服务端）`ws-client.js`（测试用 WS 客户端）。
+- `tools/build/` — `package.bat` / `package.ps1`（生成交付 zip）`build-card-data.js`（重建数据表）。
+- `tools/assets/` — `fetch-assets.ps1`（卡图下载）。
+- `tools/deploy/` — `setup-tunnel.js` `deploy-tunnel.ps1` `tunnel-check.js`（隧道创建/绑定/自检）。
+- `tools/cloudflared.exe` 保留在 tools 根目录（用户脚本 `start-all.bat` / `start-tunnel.bat` 按此路径找它），
+  55MB 二进制不入库（已 gitignore）。
 
 ## 运行与验证
 
@@ -13,7 +27,11 @@
   - 命名隧道命令：`tools\cloudflared.exe tunnel --no-autoupdate --config %USERPROFILE%\.cloudflared\config.yml run splendor`
   - 隧道配置在 `%USERPROFILE%\.cloudflared\config.yml`（含 credentials-file），隧道进程**不会开机自启**。
 - 公网：cloudflared 隧道指向 localhost:3000 → https://game.ruciazyt.cn/ 。
-- 测试（各自独立端口，可直接跑）：`node tools/rules-test.js`、`tools/render-test.mjs`、`tools/smoke-test.js`、`tools/multiplayer-test.js`、`tools/mixed-test.js`、`tools/basepath-test.js`、`tools/cache-test.js`。改前端后七套都要绿。
+- 测试（各自独立端口，可直接跑，工作目录 = `D:\programe`）：
+  `node tools/test/rules-test.js`、`node tools/test/render-test.mjs`、`node tools/test/smoke-test.js`、
+  `node tools/test/multiplayer-test.js`、`node tools/test/mixed-test.js`、`node tools/test/basepath-test.js`、
+  `node tools/test/cache-test.js`、`node tools/test/room-test.js`、`node tools/test/idle-test.js`。
+  改前端后九套都要绿（`room-test` / `idle-test` 是多房间与不活跃回收的回归）。
 
 ## 缓存与版本号（改前端必读）
 
@@ -30,18 +48,22 @@
 - 玩家行「声望」块用 flex + `align-self:center` 垂直居中。
 - 玩家行是三列网格：`声望 | 内容 | 详情`。详情按钮独占第三列（垂直居中、永远靠右，不会被挤到下一行）。
 - 玩家侧栏只留关键信息（声望 / 持有 / 红利 / 保留 / 贵族）；已购卡与保留卡的缩略图**不放侧栏**，在「详情」弹窗里看。
-- 左栏只有两块：**指示物台** + **战报**。原来的「你的红利与持有」面板已删除（与右栏重复），别再加回来。
+- 当前分栏：**左栏 = 指示物台 + 贵族圆板（竖排）**；**中栏 = 发展卡市场**；**右栏 = 玩家 + 保留卡 + 战报**。
+  原来的「你的红利与持有」面板已删除（与右栏重复），别再加回来。
+- 左栏贵族圆板一行一个：**大图（clamp(76px,6vw,112px)）+ 中文名 + 英文名**，
+  图要够大才能看清圆板上印的需求宝石（原图 145×145，放大到 112px 仍清晰）；
+  需求宝石行不再单独画在圆板下面（`.noble__req` 已废弃，render-test 有断言守着）。
 - **多房间**：服务端 `rooms` 是 Map，每个房间有自己的 records / game / hotseatSeats，互不影响。
   - 房间码统一大写（`normalizeRoomId`），默认房间固定为 `MAIN`；服务端用 `randomRoomId()` 生成 5 位码（去掉易混字符）。
   - 客户端用 `hello` 消息切换房间：带 `room` 进指定房间，带 `create: true` 让服务端新建房间。
   - 分享地址带 `?room=XXXXXX`；加入页的「房间码」输入框可手动填码。
-  - 改动房间相关逻辑后跑 `node tools/room-test.js`。
+  - 改动房间相关逻辑后跑 `node tools/test/room-test.js`。
 - **不活跃对局回收**：对局中 `IDLE_GAME_MS`（默认 5 分钟）没有任何客户端消息就结束该局并回收房间，
   结束前 `IDLE_WARN_MS`（默认 1 分钟）提醒一次；任何客户端消息都会刷新 `room.activityAt`。
-  清理循环每 2 秒跑一次。改这块后跑 `node tools/idle-test.js`（用环境变量把阈值缩到秒级）。
+  清理循环每 2 秒跑一次。改这块后跑 `node tools/test/idle-test.js`（用环境变量把阈值缩到秒级）。
 - 纯热座模式下不显示「本机热座」标签（每人都有就没意义了），混合模式才显示。
 - 保留卡在右栏里最大 104px（`.cards-row .card-slot`），别让它撑满整栏。
-- 贵族圆板：中文名固定两行高（`grid-template-rows:40px auto`）+ 英文名单独一行 + 宝石再单独一行，四张卡的宝石行必须横向对齐。
+- 贵族圆板（横向变体，用于窄屏横滑）：中文名固定两行高（`grid-template-rows:40px auto`）+ 英文名单独一行，宝石行不再单独绘制。
 - 中栏面板标题与说明同行，说明用 11px（`.col--center .panel__title .hint`）。
 - 素材：红利、贵族需求、持有三处**共用 `assets/tokens/*.png`** 同一张贴图，不要再引入 `assets/gems/` 那套裁切图。
 - **字阶**：全局只用 28 / 21 / 17 / 14 / 12 / 10 六档（`--fs-lead` / `--fs-tagline` / `--fs-body` / `--fs-caption` / `--fs-fine` / `--fs-micro`）。

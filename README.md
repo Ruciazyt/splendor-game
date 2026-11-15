@@ -155,17 +155,30 @@ public/                   # 前端（原生 ES Module，无构建步骤）
 DESIGN.md                  # 视觉规范：Apple 设计系统（单一 Action Blue / SF Pro 字阶 / 无装饰渐变）
 docs/rules-spec.md        # 规则规格与数据来源、校验说明
 rules/page_*.webp         # 官方规则书原图（第 6 页起为城市扩展，未实现）
-tools/rules-test.js      # 规则书测试：50 项断言锁定四条动作与各项限制
-tools/render-test.mjs     # 渲染层测试：可购买高亮 / 图形化持有与红利 / 等级顺序 / 样式表语法体检
-tools/smoke-test.js       # 冒烟测试：脚本自动打完整一局
-tools/multiplayer-test.js # 联机测试：入座/开局/越权拦截/保留卡私密性/断线重连
-tools/mixed-test.js      # 混合模式测试：1 联机 + 2 热座同桌、席位归属与权限、保留卡私密性
-tools/room-test.js       # 多房间测试：新建房间 / 按房间码加入 / 房间之间互相隔离
-tools/idle-test.js       # 不活跃回收测试：停滞对局被结束回收 / 有操作则不回收
-tools/ws-client.js       # 测试用 WebSocket 客户端（联机/混合测试共用）
-tools/test-server.js      # 测试专用服务端（独立端口，跑完自动关闭）
-tools/build-card-data.js  # 由卡牌数据表重建 shared/data/*.js（附卡图映射）
-tools/fetch-assets.ps1    # 卡图下载脚本（见下方「素材来源」）
+tools/                      # 按用途分四类，脚本都归到对应子目录
+  test/                    # 全部测试（各自独立端口，可直接跑）
+    rules-test.js          # 规则书测试：50 项断言锁定四条动作与各项限制
+    render-test.mjs        # 渲染层测试：可购买高亮 / 图形化持有与红利 / 等级顺序 / 样式表语法体检
+    smoke-test.js          # 冒烟测试：脚本自动打完整一局
+    multiplayer-test.js    # 联机测试：入座/开局/越权拦截/保留卡私密性/断线重连
+    mixed-test.js          # 混合模式测试：1 联机 + 2 热座同桌、席位归属与权限、保留卡私密性
+    room-test.js           # 多房间测试：新建房间 / 按房间码加入 / 房间之间互相隔离
+    idle-test.js           # 不活跃回收测试：停滞对局被结束回收 / 有操作则不回收
+    basepath-test.js       # 子路径部署测试（BASE_PATH=/splendor）
+    cache-test.js          # 缓存头 / ETag / 版本号测试
+    test-server.js         # 测试专用服务端（独立端口，跑完自动关闭）
+    ws-client.js           # 测试用 WebSocket 客户端（联机/混合测试共用）
+  build/                   # 构建与打包
+    package.bat            # 一键生成 splendor-web.zip
+    package.ps1            # 同上（PowerShell 实现，被 package.bat 调用）
+    build-card-data.js     # 由卡牌数据表重建 shared/data/*.js（附卡图映射）
+  assets/                  # 素材
+    fetch-assets.ps1       # 卡图下载脚本（见下方「素材来源」）
+  deploy/                  # 公网部署
+    setup-tunnel.js        # Cloudflare 隧道创建 + DNS 绑定（API Token 版）
+    deploy-tunnel.ps1      # 同上（交互式 tunnel login 版）
+    tunnel-check.js        # 隧道与公网自检
+  cloudflared.exe          # 隧道二进制（55MB，不入库）
 ```
 
 ---
@@ -175,10 +188,15 @@ tools/fetch-assets.ps1    # 卡图下载脚本（见下方「素材来源」）
 四个测试脚本会**各自在独立端口起一个干净的服务端**，互不干扰，可直接运行：
 
 ```bash
-node tools/rules-test.js              # 规则书逐条断言（50 项，不依赖服务端）
-node tools/render-test.mjs             # 渲染层契约（流光边框、图形化持有/红利、等级顺序…）
-node tools/smoke-test.js              # 自动打一整局热座游戏，检查终局与得分
-node tools/multiplayer-test.js         # 两个客户端联机全流程断言
+node tools/test/rules-test.js              # 规则书逐条断言（50 项，不依赖服务端）
+node tools/test/render-test.mjs             # 渲染层契约（流光边框、图形化持有/红利、等级顺序…）
+node tools/test/smoke-test.js              # 自动打一整局热座游戏，检查终局与得分
+node tools/test/multiplayer-test.js         # 两个客户端联机全流程断言
+node tools/test/mixed-test.js               # 联机 + 热座混合同桌
+node tools/test/room-test.js                # 多房间隔离
+node tools/test/idle-test.js                # 不活跃对局回收
+node tools/test/basepath-test.js            # 子路径部署
+node tools/test/cache-test.js               # 缓存头 / ETag / 版本号
 ```
 
 > `rules-test.js` 把官方中文规则书固化成用例：设置（人数差异）、四个动作、红利与贵族拜访、
@@ -258,8 +276,8 @@ cloudflared tunnel run splendor          # 注册为 Windows 服务可开机自�
 | 授权证书 | `~/.cloudflared/cert.pem`（`tunnel login` 生成） |
 | 启动命令 | `tools\cloudflared.exe tunnel --config %USERPROFILE%\.cloudflared\config.yml run splendor` |
 
-部署脚本已备好：`tools/deploy-tunnel.ps1`（创建隧道 + 绑定 DNS + 写配置 + 启动），
-`tools/setup-tunnel.js` 是走 API Token 的等价版本。
+部署脚本已备好：`tools/deploy/deploy-tunnel.ps1`（创建隧道 + 绑定 DNS + 写配置 + 启动），
+`tools/deploy/setup-tunnel.js` 是走 API Token 的等价版本，`tools/deploy/tunnel-check.js` 负责自检。
 
 ### 6.4 几个注意点
 
@@ -272,7 +290,7 @@ cloudflared tunnel run splendor          # 注册为 Windows 服务可开机自�
   ES module 的相对导入（`main.js` → `render.js` / `icons.js`）也由服务端按「public/js 下最新修改时间」统一加上版本号，
   任何一个模块改动都会让整条导入链的 URL 变化，避免浏览器/CDN 缓存住旧模块（否则会报 "does not provide an export named ..."）。
 * **子路径部署也已支持**：设置环境变量 `BASE_PATH=/splendor` 即可把应用挂到 `https://域名/splendor/` 下，
-  静态资源会自动剥前缀、WebSocket 监听 `<前缀>/ws`，用 `node tools/basepath-test.js` 验证。
+  静态资源会自动剥前缀、WebSocket 监听 `<前缀>/ws`，用 `node tools/test/basepath-test.js` 验证。
 * 隧道断开不影响本机继续玩；客户端会自动重连（断线保留席位）。
 
 ---
@@ -293,13 +311,13 @@ cloudflared tunnel run splendor          # 注册为 Windows 服务可开机自�
 复现素材下载（需要能访问 GitHub；脚本用的是 `ghproxy.net` 镜像）：
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File tools/fetch-assets.ps1
+powershell -ExecutionPolicy Bypass -File tools/assets/fetch-assets.ps1
 ```
 
 数据表重建（需先准备 `cartes.txt` / `nobles.txt`）：
 
 ```bash
-node tools/build-card-data.js
+node tools/build/build-card-data.js
 ```
 
 > 美术与商标归 Space Cowboys / Asmodee 所有，本项目仅供内部非商业使用。

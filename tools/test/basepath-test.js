@@ -1,7 +1,7 @@
 'use strict';
 /**
  * 子路径挂载测试：BASE_PATH=/splendor 时应用应跑在 /splendor/ 下。
- * 用法： node tools/basepath-test.js [port]
+ * 用法： node tools/test/basepath-test.js [port]
  */
 const http = require('http');
 const { startTestServer, stopTestServer } = require('./test-server.js');

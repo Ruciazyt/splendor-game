@@ -1,5 +1,7 @@
 
 $ErrorActionPreference='Continue'
+# 脚本在 tools/assets/ 下：切到项目根，保证下面的相对路径正确
+Set-Location (Join-Path $PSScriptRoot '..\..')
 $ua='Mozilla/5.0'
 $base='https://ghproxy.net/https://raw.githubusercontent.com/NicolasVero/splendor/master/application/splendor/images/'
 New-Item -ItemType Directory -Force -Path public/assets/cards,public/assets/nobles,public/assets/tokens | Out-Null

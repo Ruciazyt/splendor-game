@@ -3,9 +3,9 @@
  * 《璀璨宝石》基础版规则测试
  * 全部用例依据官方中文规则书（玩樂小子/Asmodee 版），把四条动作与各项限制固化为断言，
  * 防止后续改动破坏规则。
- * 用法： node tools/rules-test.js
+ * 用法： node tools/test/rules-test.js
  */
-const { Game } = require('../server/game.js');
+const { Game } = require('../../server/game.js');
 
 let passed = 0;
 let failed = 0;

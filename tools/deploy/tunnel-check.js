@@ -1,14 +1,14 @@
 'use strict';
 /**
  * 公网隧道自检：验证 HTTP 与 WebSocket 是否都通。
- * 用法： node tools/tunnel-check.js <公网地址> [直连IP]
+ * 用法： node tools/deploy/tunnel-check.js <公网地址> [直连IP]
  *   第二个参数用于本地 DNS 尚未生效时，绕过解析直连 Cloudflare 边缘 IP。
  */
-const { connect } = require('./ws-client.js');
+const { connect } = require('../test/ws-client.js');
 
 const target = (process.argv[2] || '').replace(/\/$/, '');
 const ip = process.argv[3] || null;
-if (!target) { console.error('用法: node tools/tunnel-check.js <公网地址> [直连IP]'); process.exit(1); }
+if (!target) { console.error('用法: node tools/deploy/tunnel-check.js <公网地址> [直连IP]'); process.exit(1); }
 
 (async () => {
   const wsUrl = target.replace(/^http:/, 'ws:').replace(/^https:/, 'wss:') + '/ws';

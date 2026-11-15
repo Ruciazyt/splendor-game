@@ -1,7 +1,7 @@
 'use strict';
 /**
  * 联机模式测试：多个客户端入座、开局、行动，校验私有信息隔离与权限控制。
- * 用法： node tools/multiplayer-test.js [port]
+ * 用法： node tools/test/multiplayer-test.js [port]
  */
 const { startTestServer, stopTestServer } = require('./test-server.js');
 const { connect } = require('./ws-client.js');

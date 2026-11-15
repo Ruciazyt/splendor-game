@@ -8,8 +8,11 @@ tmp_server.err
 # Cloudflare 隧道程序（52MB 二进制，从 GitHub Releases 另行下载）
 tools/cloudflared.exe
 
+# 本机 node（符号链接到 nvm）
+nodejs
+
 # 本机凭据 / 环境
-tools/.cf-token
+.cf-token
 .env
 
 # 编辑器与系统

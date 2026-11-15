@@ -2,6 +2,9 @@
 const fs = require('fs');
 const path = require('path');
 
+// 项目根（脚本在 tools/build/ 下）
+const ROOT = path.resolve(__dirname, '..', '..');
+
 const COST_ORDER = ['white', 'blue', 'black', 'red', 'green'];
 const BONUS_ORDER = ['white', 'blue', 'green', 'red', 'black'];
 
@@ -58,13 +61,13 @@ const nobles = nobl.map((line, idx) => {
   };
 });
 
-fs.writeFileSync(path.join('shared','data','cards.js'),
+fs.writeFileSync(path.join(ROOT, 'shared','data','cards.js'),
   "'use strict';\n/* 基础版 90 张发展卡：数据与官方卡面图片一一对应 */\nmodule.exports = {\n  source: 'official-art',\n  cards: " + JSON.stringify(cards, null, 2) + "\n};\n");
-fs.writeFileSync(path.join('shared','data','nobles.js'),
+fs.writeFileSync(path.join(ROOT, 'shared','data','nobles.js'),
   "'use strict';\n/* 基础版 10 张贵族圆板 */\nmodule.exports = {\n  source: 'official-art',\n  nobles: " + JSON.stringify(nobles, null, 2) + "\n};\n");
-fs.writeFileSync(path.join('public','assets','cards','manifest.json'),
+fs.writeFileSync(path.join(ROOT, 'public','assets','cards','manifest.json'),
   JSON.stringify(cards.reduce((m,c)=>{m[c.cardKey]=c.image;return m;},{})));
-fs.writeFileSync(path.join('public','assets','nobles','manifest.json'),
+fs.writeFileSync(path.join(ROOT, 'public','assets','nobles','manifest.json'),
   JSON.stringify(nobles.reduce((m,n)=>{m[n.id]=n.image;return m;},{})));
 
 // 统计自检
